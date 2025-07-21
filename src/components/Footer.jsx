@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaInstagram, FaFacebookF, FaTwitter, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
@@ -45,9 +46,9 @@ const Footer = () => {
         <div>
           <h4 className="text-sm uppercase mb-4">Categories</h4>
           <ul className="space-y-1 font-semibold">
-            <li><a href="#">Coffee</a></li>
-            <li><a href="#">Cold Drinks</a></li>
-            <li><a href="#">Bakery</a></li>
+            <li><Link to="/product">Coffee</Link></li>
+            <li><Link to="/product">Cold Drinks</Link></li>
+            <li><Link to="/product">Bakery</Link></li>
           </ul>
         </div>
 
@@ -55,15 +56,15 @@ const Footer = () => {
         <div>
           <h4 className="text-sm uppercase mb-4">Follow Us</h4>
           <div className="flex gap-4">
-            <a href="#" className="bg-[#f7ecb4] text-[#204d20] p-3 rounded-full">
+            <Link to="/product" className="bg-[#f7ecb4] text-[#204d20] p-3 rounded-full">
               <FaInstagram />
-            </a>
-            <a href="#" className="bg-[#f7ecb4] text-[#204d20] p-3 rounded-full">
+            </Link>
+            <Link to="/product" className="bg-[#f7ecb4] text-[#204d20] p-3 rounded-full">
               <FaFacebookF />
-            </a>
-            <a href="#" className="bg-[#f7ecb4] text-[#204d20] p-3 rounded-full">
+            </Link>
+            <Link to="/product" className="bg-[#f7ecb4] text-[#204d20] p-3 rounded-full">
               <FaTwitter />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

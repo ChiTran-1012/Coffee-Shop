@@ -13,7 +13,7 @@ const Famous = () => {
             </p>
           </div>
 
-           <div className='flex justify-center items-center gap-32 py-20 flex-wrap'>
+          <div className='flex justify-center items-center gap-32 py-20 flex-wrap'>
             {menuItems
               .filter(item => item.famous)
               .map((item, index) => (
