@@ -1,7 +1,15 @@
-import React from 'react';
-import { categories } from './Data'; // Assuming you have a Data.js file that exports menuItems
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Menu = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost/menu-api/get-categories.php')
+      .then(res => setCategories(res.data))
+      .catch(err => console.error("Lỗi khi tải categories:", err));
+  }, []);
+
   return (
     <div className='bg-[#fcf3d9] py-20'>
       {/* Tiêu đề */}
@@ -17,8 +25,8 @@ const Menu = () => {
           <div className='flex flex-col items-center group' key={index}>
             <div className='w-80 h-80 rounded-full shadow-md mb-4 bg-[#1d4e1a] border-4 border-[#1d4e1a] overflow-hidden transition-all duration-300 group-hover:border-green-800'>
               <img
-                src={item.image}
-                alt="Coffee"
+                src={`/public/${item.image}`} // Đảm bảo ảnh đặt trong public/images/
+                alt={item.name}
                 className='object-cover rounded-full w-full h-full transform transition-transform duration-300 group-hover:scale-110'
               />
             </div>

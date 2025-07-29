@@ -1,34 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { menuItems } from '../components/Data';
-import Card from '../components/Card';
-import { useEffect } from 'react';
+import axios from 'axios';
+
 const ProductDetail = () => {
-     useEffect(() => {
-    // Cuộn lên đầu trang mỗi khi component này được render
+    const { id } = useParams();
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [choose, setChoose] = useState('');
+
+    useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    const [choose, setChoose] = React.useState('');
 
-    const handleSizeClick = (size) => {
-        setChoose(size);
-    };
+    useEffect(() => {
+        axios.get(`http://localhost/menu-api/get-item.php?id=${id}`)
+            .then(res => {
+                let data = res.data;
+
+                // Nếu sizes là chuỗi, chuyển thành mảng
+                if (typeof data.sizes === 'string') {
+                    data.sizes = data.sizes.split(',').map(s => s.trim());
+                }
+
+                setProduct(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError('Không tìm thấy sản phẩm.');
+                setLoading(false);
+            });
+    }, [id]);
+
+    const handleSizeClick = (size) => setChoose(size);
 
     const handleOrderClick = () => {
+        if (!choose) return alert('Vui lòng chọn kích cỡ!');
         alert(`Đặt hàng thành công với kích cỡ: ${choose}`);
     };
 
-    const { id } = useParams();
-    const product = menuItems.find((item) => item.id === parseInt(id));
-
-    if (!product) return <div className="p-8 text-red-500">Không tìm thấy sản phẩm</div>;
+    if (loading) return <div className="p-8">Đang tải dữ liệu...</div>;
+    if (error || !product) return <div className="p-8 text-red-500">{error}</div>;
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#fdf6e3] to-[#e0e7df] px-4 sm:px-6 md:px-10 py-10 sm:py-16 flex flex-col items-center">
             <div className="flex flex-col lg:flex-row gap-10 bg-white/80 rounded-3xl shadow-2xl p-6 sm:p-10 max-w-6xl w-full border border-[#e5e7eb]">
                 <div className="w-full lg:w-[400px] h-[300px] sm:h-[400px] lg:h-[450px] rounded-3xl shadow-lg bg-[#1d4e1a] flex items-center justify-center overflow-hidden">
                     <img
-                        src={product.image}
+                        src={`/public/${product.image}`}  // ✅ Fix đường dẫn ảnh
                         alt={product.name}
                         className="object-cover rounded-3xl transform hover:scale-105 transition duration-300 w-full h-full"
                     />
@@ -44,7 +63,7 @@ const ProductDetail = () => {
                         <div>
                             <p className="text-green-800 font-bold text-lg sm:text-xl mb-2">Available Sizes</p>
                             <div className="flex flex-wrap gap-4 mt-2">
-                                {product.sizes.map((size, index) => (
+                                {product.sizes?.map((size, index) => (
                                     <div
                                         key={index}
                                         className={`cursor-pointer border-2 px-4 py-2 rounded-full font-semibold text-base sm:text-lg transition-all duration-200
@@ -69,25 +88,6 @@ const ProductDetail = () => {
                             Order
                         </button>
                     </div>
-                </div>
-            </div>
-
-            <div className="w-full mt-20">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl text-[#1d4e1a] font-medium text-center mb-12">
-                    You'll Love These Too
-                </h1>
-                <div className="flex flex-wrap justify-center gap-6 sm:gap-10 px-2">
-                    {menuItems
-                        .filter((item) => item.famous)
-                        .map((item) => (
-                            <Card
-                                key={item.id}
-                                to={`/product/${item.id}`}
-                                image={item.image}
-                                name={item.name}
-                                price={item.price}
-                            />
-                        ))}
                 </div>
             </div>
         </div>
