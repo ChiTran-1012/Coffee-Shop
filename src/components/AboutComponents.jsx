@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
-    <div className="bg-[#fcf3d9] px-6 py-24 lg:px-36 border-t border-[#eadcb5] text-[#1d4e1a]">
+    <div className="bg-[#fcf3d9] px-6 py-24 lg:px-36 border-t border-[#eadcb5] text-[#1d4e1a] h-screen">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         {/* Text Section */}
         <div>

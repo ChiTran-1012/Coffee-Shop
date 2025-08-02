@@ -35,10 +35,10 @@ const Footer = () => {
         <div>
           <h4 className="text-sm uppercase mb-4">Main</h4>
           <ul className="space-y-1 font-semibold">
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Locations</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">News</a></li>
+            <li><Link to="/product">Menu</Link></li>
+            <li><Link to="/location">Locations</Link></li>
+            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/news">News</Link></li>
           </ul>
         </div>
 
