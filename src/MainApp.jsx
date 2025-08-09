@@ -13,6 +13,7 @@ import News from './components/News';
 import AddUser from './components/AddUser';
 import React, { useState, useEffect } from 'react';
 import AddItem from './components/AddItem';
+import AddCategories from "./components/AddCategories.jsx";
 
 function MainApp() {
   const [user, setUser] = useState(null);
@@ -43,6 +44,7 @@ function MainApp() {
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/add-item" element={<AddItem />} />
+            <Route path="/add-categories" element={<AddCategories />} />
           {/* Add other routes as needed */}
         </Routes>
       </div>
