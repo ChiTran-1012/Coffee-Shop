@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-<<<<<<< HEAD
 import { menuItems } from './Data';
 import Card from './Card';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-=======
-import axios from 'axios';
->>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -15,17 +11,13 @@ const ProductDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [choose, setChoose] = useState('');
-<<<<<<< HEAD
     const [related, setRelated] = useState([]);
-=======
->>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     useEffect(() => {
-<<<<<<< HEAD
         setLoading(true);
         const found = menuItems.find(item => item.id === Number(id));
         if (found) {
@@ -42,30 +34,11 @@ const ProductDetail = () => {
             setRelated([]);
         }
         setLoading(false);
-=======
-        axios.get(`http://localhost/menu-api/get-item.php?id=${id}`)
-            .then(res => {
-                let data = res.data;
-
-                // Nếu sizes là chuỗi, chuyển thành mảng
-                if (typeof data.sizes === 'string') {
-                    data.sizes = data.sizes.split(',').map(s => s.trim());
-                }
-
-                setProduct(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                setError('Không tìm thấy sản phẩm.');
-                setLoading(false);
-            });
->>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
     }, [id]);
 
     const handleSizeClick = (size) => setChoose(size);
 
     const handleOrderClick = () => {
-<<<<<<< HEAD
         if (!choose) {
             toast.warn('🌟 Vui lòng chọn kích cỡ trước khi đặt hàng!', {
                 position: "top-center",
@@ -77,10 +50,6 @@ const ProductDetail = () => {
                 autoClose: 2000,
             });
         }
-=======
-        if (!choose) return alert('Vui lòng chọn kích cỡ!');
-        alert(`Đặt hàng thành công với kích cỡ: ${choose}`);
->>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
     };
 
     if (loading) return <div className="p-8">Đang tải dữ liệu...</div>;
@@ -88,18 +57,11 @@ const ProductDetail = () => {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#fdf6e3] to-[#e0e7df] px-4 sm:px-6 md:px-10 py-10 sm:py-16 flex flex-col items-center">
-<<<<<<< HEAD
             <ToastContainer />
             <div className="flex flex-col lg:flex-row gap-10 bg-white/80 rounded-3xl shadow-2xl p-6 sm:p-10 max-w-6xl w-full border border-[#e5e7eb]">
                 <div className="w-full lg:w-[400px] h-[300px] sm:h-[400px] lg:h-[450px] rounded-3xl shadow-lg bg-[#1d4e1a] flex items-center justify-center overflow-hidden">
                     <img
                         src={product.image}
-=======
-            <div className="flex flex-col lg:flex-row gap-10 bg-white/80 rounded-3xl shadow-2xl p-6 sm:p-10 max-w-6xl w-full border border-[#e5e7eb]">
-                <div className="w-full lg:w-[400px] h-[300px] sm:h-[400px] lg:h-[450px] rounded-3xl shadow-lg bg-[#1d4e1a] flex items-center justify-center overflow-hidden">
-                    <img
-                        src={`/public/${product.image}`}  // ✅ Fix đường dẫn ảnh
->>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
                         alt={product.name}
                         className="object-cover rounded-3xl transform hover:scale-105 transition duration-300 w-full h-full"
                     />
@@ -142,7 +104,6 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
 
             {/* You may also like */}
             {related.length > 0 && (
@@ -161,14 +122,8 @@ const ProductDetail = () => {
                     </div>
                 </div>
             )}
-=======
->>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
         </div>
     );
 };
 
-<<<<<<< HEAD
 export default ProductDetail;
-=======
-export default ProductDetail;
->>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
