@@ -1,5 +1,8 @@
 import React from 'react'
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
+=======
+>>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
 
 const Hero = () => {
   return (
@@ -11,8 +14,13 @@ const Hero = () => {
         <p className='text-[#FFECB8] text-lg'>Because great coffee is the start of something even greater</p>
       </div>
       <div className='flex justify-center items-center gap-8'>
+<<<<<<< HEAD
         <button className='bg-[#FFECB8] text-[#1d4e1a] px-6 py-3 rounded-full text-lg  border-1 hover:bg-[#1d4e1a] hover:border-[#FFECB8] hover:text-[#FFECB8] '><Link to="/product">Explore Menu</Link></button>
         <button className='bg-[#FFECB8] text-[#1d4e1a] px-6 py-3 rounded-full text-lg  border-1 hover:bg-[#1d4e1a] hover:border-[#FFECB8] hover:text-[#FFECB8] '><Link to="/location">Our Locations</Link></button>
+=======
+        <button className='bg-[#FFECB8] text-[#1d4e1a] px-6 py-3 rounded-full text-lg  border-1 hover:bg-[#1d4e1a] hover:border-[#FFECB8] hover:text-[#FFECB8] '>Explore Menu</button>
+        <button className='bg-[#FFECB8] text-[#1d4e1a] px-6 py-3 rounded-full text-lg  border-1 hover:bg-[#1d4e1a] hover:border-[#FFECB8] hover:text-[#FFECB8] '>Our Locations</button>
+>>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
       </div>
       <div className='flex justify-center items-center gap-8 py-20'>
         <img

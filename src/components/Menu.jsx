@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+<<<<<<< HEAD
 import { categories } from './Data'; // Sửa lại import
 
 const Menu = () => {
@@ -10,6 +11,17 @@ const Menu = () => {
       const category = categories.filter(item => item.id);
       setCategories(category);
     }, []);
+=======
+
+const Menu = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost/menu-api/get-categories.php')
+      .then(res => setCategories(res.data))
+      .catch(err => console.error("Lỗi khi tải categories:", err));
+  }, []);
+>>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
 
   return (
     <div className='bg-[#fcf3d9] py-20'>
@@ -22,11 +34,19 @@ const Menu = () => {
 
       {/* Danh sách menu */}
       <div className='flex justify-center items-center gap-32 py-20 flex-wrap'>
+<<<<<<< HEAD
         {categories1.map((item, index) => (
           <div className='flex flex-col items-center group' key={index}>
             <div className='w-80 h-80 rounded-full shadow-md mb-4 bg-[#1d4e1a] border-4 border-[#1d4e1a] overflow-hidden transition-all duration-300 group-hover:border-green-800'>
               <img
                 src={`${item.image}`} // Đảm bảo ảnh đặt trong public/images/
+=======
+        {categories.map((item, index) => (
+          <div className='flex flex-col items-center group' key={index}>
+            <div className='w-80 h-80 rounded-full shadow-md mb-4 bg-[#1d4e1a] border-4 border-[#1d4e1a] overflow-hidden transition-all duration-300 group-hover:border-green-800'>
+              <img
+                src={`/public/${item.image}`} // Đảm bảo ảnh đặt trong public/images/
+>>>>>>> bcaa34d2ac2d0691c531a3582e8814d627c887a2
                 alt={item.name}
                 className='object-cover rounded-full w-full h-full transform transition-transform duration-300 group-hover:scale-110'
               />
